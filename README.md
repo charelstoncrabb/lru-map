@@ -7,7 +7,7 @@ template<typename Key, typename Value>
 class SynchronizedLRUCacheMap
 {
 public:
-    SynchronizedLRUCacheMap(size_t max_elems = 10) : _max_elems(max_elems) {};
+    SynchronizedLRUCacheMap(size_t max_elems = 10);
 
     // main modifier methods
     bool insert(Key, Value);
