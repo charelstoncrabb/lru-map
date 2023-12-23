@@ -1,6 +1,30 @@
 # lru-map
 Templated synchronized unordered map as a least-recently-used cache 
 
+The data structure interface is defined as follows
+```
+template<typename Key, typename Value>
+class SynchronizedLRUCacheMap
+{
+public:
+    SynchronizedLRUCacheMap(size_t max_elems = 10) : _max_elems(max_elems) {};
+
+    // main modifier methods
+    bool insert(Key, Value);
+    bool update(Key, Value);
+    bool has(Key);
+    Value access(Key);
+    void resize(size_t);
+    
+
+    // inspection/debugging methods
+    size_t size() const;
+    std::list<Key> cacheKeyState(void) const;
+    void printState();
+
+}
+```
+
 Implmementation is contained in `lru.hpp`, a small suite of test/examples is in `main.cpp`.
 
 Possible main program output:
