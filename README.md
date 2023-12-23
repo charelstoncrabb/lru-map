@@ -30,6 +30,7 @@ Implmementation is contained in `lru.hpp`, a small suite of test/examples is in 
 Possible main program output:
 ```
 --- simpleTest() ---
+Initializing cache with max elems = 3
 Inserting {1, "foo"} ...
 Inserting {2, "bar"} ...
 
@@ -53,26 +54,29 @@ Current cache state: {3: zxcv},
 
 
 --- ptrTest() ---
+Initializing cache with max elems = 3
 Inserting {"one", *SomeCachedObject(1)} ...
 Inserting {"two", *SomeCachedObject(10)} ...
 *cache.access("one") = SomeCachedObject<id=1>
 
-Current cache state: {one: 0x600003fc0218},  {two: 0x600003fc01d8},  
+Current cache state: {one: 0x600002aa8218},  {two: 0x600002aa81d8},  
 
 Inserting {"three", *SomeCachedObject(11)} ...
 Inserting {"four", *SomeCachedObject(100)} ...
 *cache.access("one") = SomeCachedObject<id=1>
 Key "two" no longer in cache!
 
-Current cache state: {one: 0x600003fc0218},  {four: 0x600003fc0318},  {three: 0x600003fc0298},  
+Current cache state: {one: 0x600002aa8218},  {four: 0x600002aa8318},  {three: 0x600002aa8298},  
 
 
 --- threadedTest() ---
+Initializing cache with max elems = 2
+Inserting "t1" ...
+Inserting "t2" ...
+Inserting "t3" ...
 
-Current cache state: {t2: 0x16b43f000},  {t3: 0x16b4cb000},  
+Current cache state: {t2: 0x16bc5f000},  {t3: 0x16bceb000},  
 
 
-Current cache state: {t2: 0x16b43f000},  {t3: 0x16b4cb000},  
-
-
+Current cache state: {t2: 0x16bc5f000},  {t3: 0x16bceb000},
 ```
