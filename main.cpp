@@ -15,6 +15,7 @@ Basic {int,string} cache example
 void simpleTest()
 {
     std::cout << std::endl << "--- simpleTest() ---" << std::endl;
+    std::cout << "Initializing cache with max elems = 3" << std::endl;
     SynchronizedLRUCacheMap<int, std::string> cache(3);
 
     std::cout << "Inserting {1, \"foo\"} ..." << std::endl;
@@ -86,6 +87,7 @@ std::ostream& operator<<(std::ostream& os, const SomeCachedObject& rhs)
 void ptrTest()
 {
     std::cout << std::endl << "--- ptrTest() ---" << std::endl;
+    std::cout << "Initializing cache with max elems = 3" << std::endl;
     SynchronizedLRUCacheMap<std::string, std::shared_ptr<SomeCachedObject>> cache(3);
 
     std::function<std::shared_ptr<SomeCachedObject>(int)> make_obj = [](int id){
@@ -130,17 +132,21 @@ Example cache insert/access over multiple threads
 void threadedTest()
 {
     std::cout << std::endl << "--- threadedTest() ---" << std::endl;
+    std::cout << "Initializing cache with max elems = 2" << std::endl;
     SynchronizedLRUCacheMap<std::string, std::thread::id> cache(2);
 
     std::thread t1([&cache](){
+        std::cout << "Inserting \"t1\" ..." << std::endl;
         cache.insert("t1", std::this_thread::get_id());
         std::this_thread::sleep_for (std::chrono::milliseconds(15));
     });
     std::thread t2([&cache](){
+        std::cout << "Inserting \"t2\" ..." << std::endl;
         std::this_thread::sleep_for (std::chrono::milliseconds(10));
         cache.insert("t2", std::this_thread::get_id());
     });
     std::thread t3([&cache](){
+        std::cout << "Inserting \"t3\" ..." << std::endl;
         cache.insert("t3", std::this_thread::get_id());
         std::this_thread::sleep_for (std::chrono::milliseconds(10));
     });
