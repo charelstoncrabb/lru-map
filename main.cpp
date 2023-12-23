@@ -159,6 +159,7 @@ void threadedTest()
     cache.printState();
     std::cout << std::endl;
 
+    std::cout << "Accessing keys \"t2\", \"t3\" in separate threads ..." << std::endl;
     std::thread t4([&cache](){
         cache.access("t3");
     });

@@ -77,6 +77,8 @@ Inserting "t3" ...
 
 Current cache state: {t2: 0x16bc5f000},  {t3: 0x16bceb000},  
 
+Accessing keys "t2", "t3" in separate threads ...
 
 Current cache state: {t2: 0x16bc5f000},  {t3: 0x16bceb000},
+
 ```
